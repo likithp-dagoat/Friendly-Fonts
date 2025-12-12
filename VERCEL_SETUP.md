@@ -66,21 +66,30 @@ After your first deployment:
 
    **Variable 1:**
    - **Name**: `GOOGLE_SERVICE_ACCOUNT_EMAIL`
-   - **Value**: `your-service-account@project-id.iam.gserviceaccount.com`
+   - **Value**: `friendlyfontswaitlist@friendlyfonts.iam.gserviceaccount.com`
    - **Environments**: Select all (Production, Preview, Development)
+   - Click **Save**
 
    **Variable 2:**
    - **Name**: `GOOGLE_PRIVATE_KEY`
-   - **Value**: `-----BEGIN PRIVATE KEY-----\nYour entire private key here\n-----END PRIVATE KEY-----\n`
-   - **Important**: Keep the quotes and `\n` characters
+   - **Value**: (Copy the entire value below, including quotes and \n)
+   ```
+   "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDobYRdhIs8z4lf\n8jgK/tfMTi9e92f+gxzgaMIXCnG4Drzl7nLvE9+/uPfdLOEX0k5BWfdpYxsqa79h\nwTiyn/OgY5XvOsk0B/6jQ5cfUU/z7xQpj8vA1tlke9resw8e+ABEZVFikOsUhMuL\nboYt66xOMm5+A2sdmucfAmBY2REpegxGND2EbnA/pqiHXoSAdrs9KH1+mFOYm2bU\nlYfmcqD1jpL26A1BFQRU3dl3TLujQjD8bYC9JXz31ckKZwtFF8212nnr+Pdc7KIb\nOCeG/SH25AKxR9DMIfQL3VKJG3OuVcxfOM4lEUV4o93S+OQHQ69JrOR3KK+hQWMO\nZh4SQQQBAgMBAAECggEAENcL1cFqW9qRknu4kcYLGUi6PUA3BFq4NzjVLy7Y3xlk\n7afheJmmXCa+Vq5kv1bDyA+zpwAWPMmXu9vFtt4d8bX6wV2ErG9pL1JmBaUyN3NQ\nBlQz0rdTrZMdCtugXIG4IJHSsWMx6nJV/mE1+ZJvZoRYOxXA/LZ3c74MAFlMhAZU\nsc7XNWhrFNRJUpAPM8vgwpC0hrD3kksaIhwJFGHTzG03emSqEmKLsTHjjW5ePvIr\nDaTDYaoNtjArHcp1YYvU1sNOve5CYYfHKLZ+aj6OCJu0z/HM+SAWPTdVqYBU7Iel\naQooMdiRQTF597zbhcUuFsbeBfHR891IH/ltzktWDQKBgQD+0ozejktD7NZhg0Oe\nRUSOihsLPG4yaIr4h1T0g88olrKp0Da4k2jvgqrK9NGVjpE9XjFiR+DresbKGtAA\ndMImhowdxPeTNwZt725D1UqQ2yIoKh1doF4rGdIXuhJR0wX6owRyqifW13wps7ee\nq+qxCvH87yIAdo0nBIHiy7RGiwKBgQDpgHlvhH1TipOP/MCSGQdD6Y1XsY89UQ8Y\nkVFwxKiZqFMVQW0a3MJqV5Ygrede8Vr+zmzyBzTlJkOZYftUkUManimiscwNxZCf\npf5gX+ToPfhyC0+jA6rycVIvyIMwFFJbP/mPlBozWvlY3uQ4Szm7FsO0AAKqC0cY\njLXJrSz9IwKBgQCzvKtkJ5XrGVi1ezLspgsPR1Z//GX15EtxtXM07OvnwzPOF3Eh\ni8hOeCoj8b8K8H59fLz0h6KcNgOVdogUakavieO288F08zDzxhhOfFmWBxr2nY4N\nBhql6BaKadKWKHRlLyrp/h8PqPqJJ5xyrOxjaEb7k2i2TuiNBt7eq7RCtQKBgCsD\n0NsbVB8UszReQndnhvAa0T/rZNDN4vMKqi8U+147JPsQb3H4YxRGCFEC2FGkMrgn\n/OflLfhcwS07YJpmnC8GHfNrv4R19buDT8YfREMIT4Fq1gPYxCAfgh1tWcV8qONI\neMfbZ6w4QSD/BpncOcleWzUIn3UF2NYL7d02OshzAoGANXJjTXu2VMfstsC0TAJT\n8Xoiixn1dmnxJ0uwv1smp+OLTbAauBPGWQsJZFjfBTCP0E2OT3iaFBa3z3IfhpNQ\ni8k0fgOpuZVi2ncXrZ28c6yryis1N7RSvPy+rtjEthccnAx1L2tB6e4Y56cYtA+7\nHvZlN1v6wpuB4DBTbZ+xbuM=\n-----END PRIVATE KEY-----\n"
+   ```
+   - **Important**: 
+     - Copy the ENTIRE value above (including the quotes at the start and end)
+     - Make sure the `\n` characters are preserved (they represent newlines)
+     - In Vercel, paste it exactly as shown above
    - **Environments**: Select all (Production, Preview, Development)
+   - Click **Save**
 
    **Variable 3:**
    - **Name**: `GOOGLE_PROJECT_ID`
-   - **Value**: `your-project-id-123456`
+   - **Value**: `friendlyfonts`
    - **Environments**: Select all (Production, Preview, Development)
+   - Click **Save**
 
-5. **Click "Save"** for each variable
+5. After adding all three variables, **Redeploy** your application (see Step 5)
 
 ## Step 5: Redeploy
 
