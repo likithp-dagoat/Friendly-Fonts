@@ -9,4 +9,3 @@ pnpm dev     # run dev server
 
 Tech: Next.js App Router, Tailwind CSS, shadcn/ui primitives.
 
-
