@@ -43,12 +43,12 @@ export async function POST(request: NextRequest) {
     }
 
     // Validate that credentials are set
-    const email = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
+    const serviceAccountEmail = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
     const privateKey = process.env.GOOGLE_PRIVATE_KEY;
     const projectId = process.env.GOOGLE_PROJECT_ID;
 
     const missingVars = [];
-    if (!email || email.trim() === '') missingVars.push('GOOGLE_SERVICE_ACCOUNT_EMAIL');
+    if (!serviceAccountEmail || serviceAccountEmail.trim() === '') missingVars.push('GOOGLE_SERVICE_ACCOUNT_EMAIL');
     if (!privateKey || privateKey.trim() === '') missingVars.push('GOOGLE_PRIVATE_KEY');
     if (!projectId || projectId.trim() === '') missingVars.push('GOOGLE_PROJECT_ID');
 
@@ -56,10 +56,10 @@ export async function POST(request: NextRequest) {
       console.error('Google Sheets credentials not configured.');
       console.error('Missing variables:', missingVars.join(', '));
       console.error('Environment check:', {
-        hasEmail: !!email,
+        hasServiceAccountEmail: !!serviceAccountEmail,
         hasPrivateKey: !!privateKey,
         hasProjectId: !!projectId,
-        emailLength: email?.length || 0,
+        serviceAccountEmailLength: serviceAccountEmail?.length || 0,
         privateKeyLength: privateKey?.length || 0,
         projectIdLength: projectId?.length || 0,
       });
