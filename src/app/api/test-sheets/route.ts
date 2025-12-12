@@ -4,10 +4,18 @@ import { google } from 'googleapis';
 const SPREADSHEET_ID = '1P1RqLdPCHU6Pf3b9KnXH4eECbAelZ9208Ximp7E3Tz0';
 
 async function getAuth() {
+  let privateKey = process.env.GOOGLE_PRIVATE_KEY || '';
+  
+  // Handle different formats of private key
+  if (privateKey) {
+    // Replace escaped newlines with actual newlines
+    privateKey = privateKey.replace(/\\n/g, '\n');
+  }
+
   const auth = new google.auth.GoogleAuth({
     credentials: {
       client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
-      private_key: process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, '\n'),
+      private_key: privateKey,
       project_id: process.env.GOOGLE_PROJECT_ID,
     },
     scopes: ['https://www.googleapis.com/auth/spreadsheets'],
