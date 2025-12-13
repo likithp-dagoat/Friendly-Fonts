@@ -8,8 +8,26 @@ async function getAuth() {
   
   // Handle different formats of private key
   if (privateKey) {
+    // Remove surrounding quotes if present (single or double)
+    privateKey = privateKey.trim();
+    if ((privateKey.startsWith('"') && privateKey.endsWith('"')) ||
+        (privateKey.startsWith("'") && privateKey.endsWith("'"))) {
+      privateKey = privateKey.slice(1, -1);
+    }
+    
     // Replace escaped newlines with actual newlines
+    // Handle both \\n (double escaped) and \n (single escaped)
     privateKey = privateKey.replace(/\\n/g, '\n');
+    
+    // If it still doesn't have newlines but has literal \n, try one more time
+    if (!privateKey.includes('\n') && privateKey.includes('\\n')) {
+      privateKey = privateKey.replace(/\\n/g, '\n');
+    }
+    
+    // Ensure the key has proper BEGIN/END markers
+    if (!privateKey.includes('BEGIN PRIVATE KEY') || !privateKey.includes('END PRIVATE KEY')) {
+      throw new Error('Invalid private key format: missing BEGIN/END markers');
+    }
   }
 
   const auth = new google.auth.GoogleAuth({
