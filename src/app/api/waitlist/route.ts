@@ -89,8 +89,18 @@ export async function POST(request: NextRequest) {
     const auth = await getAuth();
     const sheets = google.sheets({ version: 'v4', auth });
 
-    // Get the current date/time
-    const timestamp = new Date().toISOString();
+    // Format the current date/time in a readable format
+    const now = new Date();
+    const formattedTimestamp = now.toLocaleString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: true,
+      timeZoneName: 'short'
+    });
 
     // Append the email and timestamp to the sheet
     // Assuming the sheet has headers in row 1: Email, Timestamp
@@ -99,7 +109,7 @@ export async function POST(request: NextRequest) {
       range: 'Sheet1!A:B', // Adjust if your sheet name is different
       valueInputOption: 'USER_ENTERED',
       requestBody: {
-        values: [[email, timestamp]],
+        values: [[email, formattedTimestamp]],
       },
     });
 
