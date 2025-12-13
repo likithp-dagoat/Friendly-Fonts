@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useCallback } from "react";
-import { Upload, FileText, Loader2, Download, CheckCircle2 } from "lucide-react";
+import { Upload, FileText, Loader2, Download, CheckCircle2, FileDown } from "lucide-react";
 import { Button } from "./ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
 import { cn } from "@/lib/utils";
@@ -63,14 +63,30 @@ export function PDFUpload() {
         body: formData,
       });
 
+      // Check if response has content before trying to parse JSON
+      const contentType = response.headers.get("content-type");
+      if (!contentType || !contentType.includes("application/json")) {
+        const text = await response.text();
+        throw new Error(text || "Invalid response from server");
+      }
+
       const data = await response.json();
 
       if (response.ok) {
-        setUploadResult({
-          success: true,
-          fontUrl: data.fontUrl,
-          fontName: data.fontName,
-        });
+        // Check if font generation is complete (has fontUrl)
+        if (data.fontUrl && data.fontName) {
+          setUploadResult({
+            success: true,
+            fontUrl: data.fontUrl,
+            fontName: data.fontName,
+          });
+        } else {
+          // Font generation is in progress or coming soon
+          setUploadResult({
+            success: true,
+            error: data.message || "Font generation is in progress. This feature is coming soon!",
+          });
+        }
       } else {
         setUploadResult({
           success: false,
@@ -78,9 +94,10 @@ export function PDFUpload() {
         });
       }
     } catch (error) {
+      console.error("Upload error:", error);
       setUploadResult({
         success: false,
-        error: error instanceof Error ? error.message : "An error occurred",
+        error: error instanceof Error ? error.message : "An error occurred while processing your file",
       });
     } finally {
       setIsProcessing(false);
@@ -98,6 +115,11 @@ export function PDFUpload() {
     }
   }, [uploadResult]);
 
+  const handleDownloadTemplate = useCallback(() => {
+    // Open the template HTML in a new window for printing/saving as PDF
+    window.open('/handwriting-template.html', '_blank');
+  }, []);
+
   return (
     <div className="space-y-6">
       <Card>
@@ -108,6 +130,18 @@ export function PDFUpload() {
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
+          <div className="flex items-center justify-between p-4 bg-muted rounded-lg">
+            <div>
+              <p className="font-medium">Need a template?</p>
+              <p className="text-sm text-muted-foreground">
+                Download our handwriting template, fill it out, and upload it here
+              </p>
+            </div>
+            <Button onClick={handleDownloadTemplate} variant="outline">
+              <FileDown className="mr-2 h-4 w-4" />
+              Download Template
+            </Button>
+          </div>
           <div
             className={cn(
               "relative border-2 border-dashed rounded-lg p-12 transition-colors",
