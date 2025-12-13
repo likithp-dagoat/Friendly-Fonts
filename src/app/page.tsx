@@ -54,7 +54,13 @@ export default function HomePage() {
                     <PenLine className="h-5 w-5" />
                     <CardTitle>Write the template</CardTitle>
                   </div>
-                  <CardDescription>Print and fill our template with your handwriting.</CardDescription>
+                  <CardDescription>
+                    Print and fill our{' '}
+                    <a href="/handwriting-template.html" target="_blank" className="underline">
+                      template
+                    </a>{' '}
+                    with your handwriting.
+                  </CardDescription>
                 </CardHeader>
                 <CardContent className="text-sm text-muted-foreground">
                   Use your favorite pen and write naturally. We support Latin characters and punctuation.
