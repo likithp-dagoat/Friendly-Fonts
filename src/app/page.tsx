@@ -56,7 +56,7 @@ export default function HomePage() {
                   </div>
                   <CardDescription>
                     Print and fill our{' '}
-                    <a href="/handwriting-template.pdf" download className="underline">
+                    <a href="/handwriting-template" className="underline">
                       template
                     </a>{' '}
                     with your handwriting.
