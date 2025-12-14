@@ -4,13 +4,20 @@ import Link from "next/link";
 import { useTheme } from "next-themes";
 import { Moon, Sun } from "lucide-react";
 import { Button } from "./button";
+import { Playfair_Display } from "next/font/google";
+
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  weight: ["700"],
+  display: "swap",
+});
 
 export function Navbar() {
   const { theme, setTheme } = useTheme();
   return (
     <header className="sticky top-0 z-40 w-full border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-14 items-center justify-between">
-        <Link href="/" className="font-semibold">
+        <Link href="/" className={`text-xl font-bold tracking-tight ${playfair.className}`}>
           FriendlyFonts
         </Link>
         <nav className="hidden gap-6 text-sm font-medium md:flex">

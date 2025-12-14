@@ -4,7 +4,6 @@ import { useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Navbar } from "@/components/ui/navbar";
 import { Download, Printer } from "lucide-react";
-import html2pdf from "html2pdf.js";
 
 export default function HandwritingTemplatePage() {
   const templateRef = useRef<HTMLDivElement>(null);
@@ -14,7 +13,7 @@ export default function HandwritingTemplatePage() {
 
     const element = templateRef.current;
     const opt = {
-      margin: 0.5, // inches
+      margin: 0.5,
       filename: "handwriting-template.pdf",
       image: { type: 'jpeg' as 'jpeg', quality: 0.98 },
       html2canvas: { 
@@ -25,11 +24,12 @@ export default function HandwritingTemplatePage() {
       jsPDF: { 
         unit: "in", 
         format: "a4", 
-        orientation: "portrait" 
+        orientation: "portrait" as "portrait"
       },
     };
 
     try {
+      const html2pdf = (await import("html2pdf.js")).default;
       await html2pdf().set(opt).from(element).save();
     } catch (error) {
       console.error("Error generating PDF:", error);
