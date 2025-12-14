@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Navbar } from "@/components/ui/navbar";
-import { Download, FileText, Printer } from "lucide-react";
+import { Download, Printer } from "lucide-react";
 import html2pdf from "html2pdf.js";
 
 export default function HandwritingTemplatePage() {
@@ -16,7 +16,7 @@ export default function HandwritingTemplatePage() {
     const opt = {
       margin: 0.5, // inches
       filename: "handwriting-template.pdf",
-      image: { type: "jpeg", quality: 0.98 },
+      image: { type: 'jpeg' as 'jpeg', quality: 0.98 },
       html2canvas: { 
         scale: 2,
         useCORS: true,
@@ -219,7 +219,7 @@ export default function HandwritingTemplatePage() {
               marginBottom: "20px" 
             }}>
               {numbers.map((char) => (
-                <div key_={char} style={{ textAlign: "center" }}>
+                <div key={char} style={{ textAlign: "center" }}>
                   <div style={{ 
                     border: "2px solid #333", 
                     height: "60px", 
@@ -228,7 +228,7 @@ export default function HandwritingTemplatePage() {
                     justifyContent: "center", 
                     fontSize: "24px", 
                     fontWeight: "bold", 
-                    backgroundColor: "#fff" 
+                    backgroundColor: "##fff" 
                   }}>
                     {char}
                   </div>
