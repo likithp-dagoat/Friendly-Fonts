@@ -116,8 +116,8 @@ export function PDFUpload() {
   }, [uploadResult]);
 
   const handleDownloadTemplate = useCallback(() => {
-    // Open the template HTML in a new window for printing/saving as PDF
-    window.open('/handwriting-template.html', '_blank');
+    // Navigate to the handwriting template page
+    window.open('/handwriting-template', '_blank');
   }, []);
 
   return (

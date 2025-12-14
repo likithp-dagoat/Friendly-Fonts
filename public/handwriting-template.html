@@ -95,6 +95,11 @@
             font-size: 16px;
             margin-top: 15px;
         }
+        @media print {
+          #download-pdf {
+            display: none;
+          }
+        }
     </style>
 </head>
 <body>
@@ -473,21 +478,9 @@
         <p>FriendlyFonts - Turn your handwriting into a beautiful font</p>
         <p>After filling out this template, scan or photograph it, save as PDF, and upload to friendlyfonts.com</p>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script>
         document.getElementById('download-pdf').addEventListener('click', () => {
-            const { jsPDF } = window.jspdf;
-            const pdf = new jsPDF('p', 'pt', 'a4');
-            const content = document.body;
-
-            html2canvas(content).then(canvas => {
-                const imgData = canvas.toDataURL('image/png');
-                const pdfWidth = pdf.internal.pageSize.getWidth();
-                const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
-                pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
-                pdf.save('handwriting-template.pdf');
-            });
+            window.print();
         });
     </script>
 </body>
