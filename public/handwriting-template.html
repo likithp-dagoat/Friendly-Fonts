@@ -85,12 +85,23 @@
             font-size: 12px;
             color: #666;
         }
+        #download-pdf {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 15px;
+        }
     </style>
 </head>
 <body>
     <div class="header">
         <h1>FriendlyFonts Handwriting Template</h1>
         <p>Fill out this template with your handwriting to create your custom font</p>
+        <button id="download-pdf">Download as PDF</button>
     </div>
 
     <div class="instructions">
@@ -462,6 +473,22 @@
         <p>FriendlyFonts - Turn your handwriting into a beautiful font</p>
         <p>After filling out this template, scan or photograph it, save as PDF, and upload to friendlyfonts.com</p>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script>
+        document.getElementById('download-pdf').addEventListener('click', () => {
+            const { jsPDF } = window.jspdf;
+            const pdf = new jsPDF('p', 'pt', 'a4');
+            const content = document.body;
+
+            html2canvas(content).then(canvas => {
+                const imgData = canvas.toDataURL('image/png');
+                const pdfWidth = pdf.internal.pageSize.getWidth();
+                const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+                pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+                pdf.save('handwriting-template.pdf');
+            });
+        });
+    </script>
 </body>
 </html>
-
