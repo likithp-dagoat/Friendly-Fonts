@@ -14,7 +14,7 @@ export default function HandwritingTemplatePage() {
 
     const element = templateRef.current;
     const opt = {
-      margin: [0.5, 0.5, 0.5, 0.5], // inches
+      margin: 0.5, // inches
       filename: "handwriting-template.pdf",
       image: { type: "jpeg", quality: 0.98 },
       html2canvas: { 
@@ -219,7 +219,7 @@ export default function HandwritingTemplatePage() {
               marginBottom: "20px" 
             }}>
               {numbers.map((char) => (
-                <div key={char} style={{ textAlign: "center" }}>
+                <div key_={char} style={{ textAlign: "center" }}>
                   <div style={{ 
                     border: "2px solid #333", 
                     height: "60px", 
