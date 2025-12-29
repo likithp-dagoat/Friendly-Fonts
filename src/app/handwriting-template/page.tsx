@@ -25,7 +25,7 @@ export default function HandwritingTemplatePage() {
       jsPDF: { 
         unit: "in", 
         format: "a4", 
-        orientation: "portrait" 
+        orientation: "portrait" as const, 
       },
     };
 
@@ -228,7 +228,7 @@ export default function HandwritingTemplatePage() {
                     justifyContent: "center", 
                     fontSize: "24px", 
                     fontWeight: "bold", 
-                    backgroundColor: "##fff" 
+                    backgroundColor: "#fff" 
                   }}>
                     {char}
                   </div>
